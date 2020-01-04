@@ -8,6 +8,7 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: jgroups-kubeping-pod-reader
+  namespace: labs
 rules:
 - apiGroups: [""]
   resources: ["pods"]

@@ -4,9 +4,13 @@ embed-server --server-config=standalone-full-ha.xml --std-out=echo
 
 # apply all configuration to the server
 batch
+/subsystem=messaging-activemq/server=default/cluster-connection=my-cluster:write-attribute(name=reconnect-attempts,value=10)  
+/interface=kubernetes:add(nic=eth0)  
+/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp/:write-attribute(name=interface,value=kubernetes)  
+/socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd/:write-attribute(name=interface,value=kubernetes)  
 /subsystem=jgroups/channel=ee:write-attribute(name=stack,value=tcp)
 /subsystem=jgroups/stack=tcp/protocol=MPING:remove()
-/subsystem=jgroups/stack=tcp/protocol=org.jgroups.protocols.kubernetes.KUBE_PING:add(add-index=0,properties={namespace=${env.KUBERNETES_NAMESPACE},masterHost=${env.KUBERNETES_SERVICE_HOST},masterPort=${env.KUBERNETES_SERVICE_PORT}})
+/subsystem=jgroups/stack=tcp/protocol=org.jgroups.protocols.kubernetes.KUBE_PING:add(add-index=0,properties={namespace=${env.KUBERNETES_NAMESPACE},masterHost=${env.KUBERNETES_SERVICE_HOST},masterPort=${env.KUBERNETES_SERVICE_PORT,labels=KUBERNETES_LABELS}})
 run-batch
 
 # stop embedded server

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wildfly-deployment
+  namespace: labs
   labels:
     app: wildfly
     tier: devops
@@ -45,3 +46,5 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: metadata.namespace
+            - name: KUBERNETES_LABELS 
+              value: app=wildfly
