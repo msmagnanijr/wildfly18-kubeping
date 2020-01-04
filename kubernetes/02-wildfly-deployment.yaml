@@ -28,7 +28,7 @@ spec:
               memory: 256Mi
             limits:
               memory: 512Mi
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
             - containerPort: 9990

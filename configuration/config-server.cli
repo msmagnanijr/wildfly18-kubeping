@@ -4,8 +4,10 @@ embed-server --server-config=standalone-full-ha.xml --std-out=echo
 
 # apply all configuration to the server
 batch
+/subsystem=jgroups/channel=ee:write-attribute(name=stack,value=tcp)
 /subsystem=jgroups/stack=tcp/protocol=MPING:remove()
 /subsystem=jgroups/stack=tcp/protocol=kubernetes.KUBE_PING:add(add-index=0,properties={namespace="labs",labels="app=wildfly"})
+run-batch
 
 # stop embedded server
 stop-embedded-server
