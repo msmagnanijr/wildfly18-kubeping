@@ -4,8 +4,8 @@ kind: Ingress
 metadata:
     name: wildfly-ingress
     labels:
-    app: wildfly
-    tier: devops
+      app: wildfly
+      tier: devops
 spec:
     rules:
     - host: wildfly.mmagnani.lab
