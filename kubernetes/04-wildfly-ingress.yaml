@@ -3,16 +3,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
     name: wildfly-ingress
-    labels:
-      app: wildfly
-      tier: devops
 spec:
-    rules:
-    - host: wildfly.mmagnani.lab
+  rules:
+  - host: wildfly.mmagnani.lab
     http:
-        paths:
-        - path: /
+      paths:
+      - path: /
         backend:
-            serviceName: wildfly-service
-            servicePort: 8080
-    
+          serviceName: wildfly-service
+          servicePort: 8080
