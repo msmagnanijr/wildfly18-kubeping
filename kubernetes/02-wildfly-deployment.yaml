@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wildfly-deployment
+  labels:
+    app: wildfly
+    tier: devops
+spec:
+  selector:
+    matchLabels:
+      app: wildfly
+      tier: devops
+  replicas: 2
+  template: 
+    metadata:
+      labels:
+        app: wildfly
+        tier: devops
+    spec:
+      serviceAccountName: jgroups-kubeping-service-account
+      containers:
+        - name: kube-ping
+          image: mmagnani/wildfly18-kubeping:latest
+          command: ["/opt/jboss/wildfly/bin/standalone.sh"]
+          args: ["-c", "standalone-ha.xml", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 512Mi
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+            - containerPort: 9990
+            - containerPort: 7600
+            - containerPort: 8888
