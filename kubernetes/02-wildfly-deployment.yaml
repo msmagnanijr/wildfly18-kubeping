@@ -33,7 +33,6 @@ spec:
           ports:
             - containerPort: 8080
             - containerPort: 9990
-            - containerPort: 7600
             - containerPort: 8888
           env:
             - name: POD_IP
