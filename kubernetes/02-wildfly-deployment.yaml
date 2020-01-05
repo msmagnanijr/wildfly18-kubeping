@@ -23,7 +23,7 @@ spec:
         - name: kube-ping
           image: mmagnani/wildfly18-kubeping:latest
           command: ["/opt/jboss/wildfly/bin/standalone.sh"]
-          args: ["-c", "standalone-ha.xml", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0" ,"-bprivate",$(POD_IP)]
+          args: ["-c", "standalone-ha.xml", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0" ," -bprivate ", $(POD_IP)]
           resources:
             requests:
               memory: 256Mi
@@ -33,6 +33,7 @@ spec:
           ports:
             - containerPort: 8080
             - containerPort: 9990
+            - containerPort: 7600
             - containerPort: 8888
           env:
             - name: POD_IP

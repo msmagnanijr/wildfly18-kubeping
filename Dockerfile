@@ -12,4 +12,4 @@ RUN rm -Rf /opt/jboss/wildfly/standalone/configuration/standalone_xml_history/*
 
 ADD application/cluster.war /opt/jboss/wildfly/standalone/deployments/
 
-EXPOSE 8080 9990 8888
+EXPOSE 8080 9990 7600 8888

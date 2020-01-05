@@ -4,9 +4,9 @@ embed-server --server-config=standalone-full-ha.xml --std-out=echo
 
 # apply all configuration to the server
 batch
-/subsystem=logging/logger=org.openshift.ping:add()
-/subsystem=logging/logger=org.openshift.ping:write-attribute(name=level, value=DEBUG)
-/subsystem=logging/logger=org.openshift.ping:add-handler(name=CONSOLE)
+#/subsystem=logging/logger=org.openshift.ping:add()
+#/subsystem=logging/logger=org.openshift.ping:write-attribute(name=level, value=DEBUG)
+#/subsystem=logging/logger=org.openshift.ping:add-handler(name=CONSOLE)
 /subsystem=messaging-activemq/server=default/cluster-connection=my-cluster:write-attribute(name=reconnect-attempts,value=10)  
 /interface=kubernetes:add(nic=eth0)  
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp/:write-attribute(name=interface,value=kubernetes)  

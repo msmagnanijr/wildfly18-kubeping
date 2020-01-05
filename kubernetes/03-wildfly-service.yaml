@@ -11,10 +11,6 @@ spec:
   ports:
     - targetPort: 8080
       port: 8080
-    - targetPort: 9990
-      port: 9990
-    - targetPort: 8888
-      port: 8888
   selector:
     app: wildfly
     tier: devops
