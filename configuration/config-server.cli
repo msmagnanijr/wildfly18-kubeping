@@ -12,8 +12,9 @@ batch
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp/:write-attribute(name=interface,value=kubernetes)  
 /socket-binding-group=standard-sockets/socket-binding=jgroups-tcp-fd/:write-attribute(name=interface,value=kubernetes)  
 /subsystem=jgroups/channel=ee:write-attribute(name=stack,value=tcp)
+/subsystem=jgroups/channel=ee:write-attribute(name=cluster,value=kubernetes)
 /subsystem=jgroups/stack=tcp/protocol=MPING:remove()
-/subsystem=jgroups/stack=tcp/protocol=kubernetes.KUBE_PING:add(add-index=0,properties={namespace=${env.KUBERNETES_NAMESPACE},labels=${env.KUBERNETES_LABELS},port_range=0})
+/subsystem=jgroups/stack=tcp/protocol=kubernetes.KUBE_PING:add(add-index=0,properties={namespace=${env.KUBERNETES_NAMESPACE},labels=${env.KUBERNETES_LABELS},port_range=0,masterHost=kubernetes.default.svc,masterPort=443})
 run-batch
 
 # stop embedded server

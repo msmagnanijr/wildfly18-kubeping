@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: wildfly-service
+    name: wildfly
     namespace: labs
     labels:
       app: wildfly
