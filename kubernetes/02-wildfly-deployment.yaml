@@ -23,7 +23,7 @@ spec:
         - name: kube-ping
           image: mmagnani/wildfly18-kubeping:latest
           command: ["/opt/jboss/wildfly/bin/standalone.sh"]
-          args: ["--server-config", "standalone-full-ha.xml", "-b", $(POD_IP), "-bmanagement", $(POD_IP) ,"-bprivate", $(POD_IP)]
+          args: ["--server-config", "standalone-full-ha.xml", "-b", $(POD_IP), "-bmanagement", $(POD_IP) ,"-bprivate", $(POD_IP), "-Djboss.messaging.cluster.password","redhat" ]
           resources:
             requests:
               memory: 256Mi
